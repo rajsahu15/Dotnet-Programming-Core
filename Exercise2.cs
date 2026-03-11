@@ -1,71 +1,164 @@
 using System;
+using System.Collections.Generic;
+public class Exercise2 {
+    static void Main(string[] ar) {
+        //declaring an array
+        int[] arr1 = { 10, 20, 30, 40, 50 };
+        int[] arr2 = new int[5];
+        int[] arr3 = new[] { 10, 20, 30, 40, 50 };
+        int[] arr4 = new int[5] { 10, 20, 30, 40, 50 };
+        //printing an array
+        Console.WriteLine(string.Join(", ",arr3));
+        foreach (int num in arr1) {
+            Console.Write(num+" ");
+        }
+        //inserting the values in the blank array from another array
+        for (int i = 0; i < arr2.Length; i++)
+        {
+            arr2[i] = arr1[i];
+        }
+        Console.WriteLine("\n"+string.Join(", ", arr2));
 
-public class Exercise2
-{
-	static void Main(string[] ar)
-	{
+            //About Collections
+              
+            //1. List
+         
+            List<string> students = new List<string> { "Ram", "Sita" };
+            Console.WriteLine("Initial: " + string.Join(", ", students));
 
-		// --- 1. Variables and Datatypes ---
+            // 1. Add - Adding at the end
+            students.Add("Karn");
+            Console.WriteLine("After Add(Karn): " + string.Join(", ", students));
 
-		sbyte age2 = 10;
-		byte age3 = 20;
-		short age4 = 30;
-		int age5 = 10;
-		int age = 25;
-		long muskAccountbal = 800000000000L;
+            // 2. Insert - 
+            students.Insert(1, "Arjun");
+            Console.WriteLine("After Insert(1, Arjun): " + string.Join(", ", students));
 
-		
+            // 3. Remove - 
+            students.Remove("Arjun");
+            Console.WriteLine("After Remove(Arjun): " + string.Join(", ", students));
 
-		float temperature = 10.6f;
-		double pi = 3.14213;
-		decimal bankBalance = 1500.50m;
+            // 4. Contains 
+            bool isPresent = students.Contains("Karn");
+            Console.WriteLine("Is 'Karn' present? " + isPresent);
 
-		char grade = 'A';
-		bool isTrue = true;
+            // 5. Count 
+            Console.WriteLine("Total Count: " + students.Count);
 
-		// --- 2. Reference Types ---
-		string message = "Datatypes Program";
-		int[] arr = { 10, 2, 0, 30 }; 
 
-		// --- 3. Operators ---
+            // 7. Clear 
+            students.Clear();
+            Console.WriteLine("After Clear, Count is: " + students.Count);
 
-		int sum = age + 5;
-		double division = pi / 2;
-		int remainder = 10 % 3;
+            //2. Dictionary
+            
+            Dictionary<int, string> Dstudents = new Dictionary<int, string>();
 
-		bool canVote = age >= 18;
-		bool isPass = (grade == 'A');
+            Dstudents.Add(101, "Ram");
+            Dstudents.Add(102, "Sita");
 
-		bool canWork = canVote && isPass;
-		bool canNotDrive = (age <= 18) || (age >= 80);
+            Dstudents[103] = "Karn"; // Adds 103
+            Dstudents[101] = "Rama"; // Updates 101 from "Ram" to "Rama"
 
-		//--4. Assignment Operator --
-		age += age5;
+            if (Dstudents.ContainsKey(102))
+            {
+                Console.WriteLine("ID 102 belongs to: " + Dstudents[102]);
+            }
 
-		// --- 4. Printing All using the + Sign ---
+           
+            Dstudents.Remove(103);
 
-		Console.WriteLine("===== " + message + " =====");
+            // 6. Printing Pairs
+            foreach (KeyValuePair<int, string> pair in Dstudents)
+            {
+                Console.WriteLine("ID: " + pair.Key + ", Name: " + pair.Value);
+            }
 
-		Console.WriteLine("Integer types: " + age2 + ", " + age3 + ", " + age4 + ", " + age + ", " + muskAccountbal);
+            // 7. Count 
+            Console.WriteLine("Total: " + Dstudents.Count);
 
-		Console.WriteLine("Temperature: " + temperature + "f");
-		Console.WriteLine("Pi Value: " + pi);
-		Console.WriteLine("Bank Balance: " + bankBalance);
+            // 8. Clear
+            Dstudents.Clear();
 
-		Console.WriteLine("Grade: " + grade);
-		Console.WriteLine("Boolean Value: " + isTrue);
+            //HashSet
+            HashSet<int> studentIds = new HashSet<int>();
 
-		// Printing Array elements manually
-		Console.WriteLine("Array elements: " + arr[0] + ", " + arr[1] + ", " + arr[2] + ", " + arr[3]);
+            // 1. Add(ele)
+            studentIds.Add(101);
+            studentIds.Add(102);
+            studentIds.Add(103);
+            studentIds.Add(104);
+            studentIds.Add(105);
 
-		Console.WriteLine("Arithmetic Sum: " + sum);
-		Console.WriteLine("Division Result: " + division);
-		Console.WriteLine("Remainder (Modulus): " + remainder);
 
-		Console.WriteLine("Can Vote: " + canVote);
-		Console.WriteLine("Is a Passing Grade: " + isPass);
-		Console.WriteLine("Logical AND (Can Work): " + canWork);
-		Console.WriteLine("Logical OR (Cannot Drive): " + canNotDrive);
-		
-	}
+
+        // 2. Remove(ele)
+        studentIds.Remove(102);
+
+            // 3. Contains(ele)
+            if (studentIds.Contains(101))
+            {
+                Console.WriteLine("ID 101 is in the set.");
+            }
+
+           foreach (int id in studentIds)
+            {
+                Console.WriteLine(id);
+            }
+
+        // QUEUE
+        Queue<string> Work = new Queue<string>();
+
+        // 2. Enqueue(T) - Adds an item to the BACK of the queue
+        Work.Enqueue("IT");
+        Work.Enqueue("Sales");
+        Work.Enqueue("Service");
+
+        // 3. Peek() - Looks at the FRONT item WITHOUT removing it
+        Console.WriteLine("Next up to print: " + Work.Peek());
+
+        // 4. Dequeue() - Returns and REMOVES the item from the FRONT
+        string finishedJob = Work.Dequeue();
+        Console.WriteLine("Finished printing: " + finishedJob);
+
+        // Checking the new front
+        Console.WriteLine("Now the front is: " + Work.Peek());
+
+        // 5. Contains()
+        if (Work.Contains("Sales"))
+        {
+            Console.WriteLine("Sales is still waiting in line.");
+        }
+
+        // 6. Count
+        Console.WriteLine("Jobs remaining: " + Work.Count);
+        
+        //Stack
+
+        Stack<string> Subject = new Stack<string>();
+
+        // 2. Push() - Adds an item to the TOP
+        Subject.Push("Math");
+        Subject.Push("Science");
+        Subject.Push("Hindi");
+
+        // 3. Peek() - Looks at the TOP item WITHOUT removing it
+        Console.WriteLine("Current Page: " + Subject.Peek());
+
+        // 4. Pop() - Returns and REMOVES the item from the TOP
+        string lastPage = Subject.Pop();
+        Console.WriteLine("Navigating back from: " + lastPage);
+
+        // Checking the new top
+        Console.WriteLine("Now the current page is: " + Subject.Peek());
+
+        // 5. Contains(T) - Checks if a page is in the stack
+        Console.WriteLine("Is Math in Subject? " + Subject.Contains("Math"));
+
+        // 6. Count - How many pages are stored
+        Console.WriteLine("Pages in Subject: " + Subject.Count);
+    }
 }
+
+  
+ 
